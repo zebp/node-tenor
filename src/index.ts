@@ -25,6 +25,17 @@ export interface StandardParams {
     locale?: string;
 }
 
+type Endpoints =
+    | "trending"
+    | "categories"
+    | "search_suggestions"
+    | "autocomplete"
+    | "trending_terms"
+    | "registershare"
+    | "gifs"
+    | "random"
+    | "anonid";
+
 export class TenorClient {
     private standardParams: StandardParams;
 
@@ -78,8 +89,7 @@ export class TenorClient {
         return res.anon_id;
     }
 
-    // TODO: Make endpoint a string union.
-    private async makeRequest<T, P>(endpoint: string, params: P): Promise<T> {
+    private async makeRequest<T, P>(endpoint: Endpoints, params: P): Promise<T> {
         const queryParams = {
             ...this.standardParams,
             ...params,

@@ -1,9 +1,10 @@
 {
-    "name": "node-typescript-template",
+    "name": "node-tenor",
     "version": "1.0.0",
-    "main": "index.js",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "author": "Zeb Piasecki <zeb@zebulon.dev>",
-    "license": "MIT",
+    "license": "Unlicense",
     "scripts": {
         "dev": "ts-node src/index.ts",
         "build": "tsc",

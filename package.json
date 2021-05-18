@@ -12,9 +12,9 @@
         "fmt": "prettier src/** -w",
         "start": "node dist/index.js",
         "prepare": "husky install",
-        "test": "jest",
-        "prepublish": "tsc"
+        "test": "jest"
     },
+    "prepublish": "tsc",
     "devDependencies": {
         "@babel/preset-env": "^7.14.2",
         "@babel/preset-typescript": "^7.13.0",

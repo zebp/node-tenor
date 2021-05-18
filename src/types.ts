@@ -3,6 +3,14 @@ export interface PagingResponse {
     next?: string;
 }
 
+export interface CategoriesResponse {
+    tags: CategoryObject[];
+}
+
+export interface StringListResponse {
+    results: string[];
+}
+
 export type GifFormat =
     | "gif"
     | "mediumgif"
@@ -73,6 +81,25 @@ export interface MediaObject {
      * Size of file in bytes.
      */
     size: number;
+}
+
+export interface CategoryObject {
+    /**
+     * The english search term that corresponds to the category
+     */
+    searchterm: string;
+    /**
+     * the search url to request if the user selects the category
+     */
+    path: string;
+    /**
+     * a url to the media source for the category’s example GIF
+     */
+    image: string;
+    /**
+     * Category name to overlay over the image. The name will be translated to match the locale of the corresponding request
+     */
+    name: string;
 }
 
 export class TenorError extends Error {

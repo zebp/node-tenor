@@ -1,5 +1,14 @@
-import { TrendingParams } from "./params";
-import { PagingResponse, TenorError } from "./types";
+import {
+    AutoCompleteParams,
+    CategoriesParams,
+    GifsParams,
+    RandomParams,
+    RegisterShareParams,
+    SearchSuggestionsParams,
+    TrendingParams,
+    TrendingTermsParams,
+} from "./params";
+import { CategoriesResponse, CategoryObject, PagingResponse, StringListResponse, TenorError } from "./types";
 
 // Hack to define a fetch function.
 const fetchFunc: typeof fetch = (() => {
@@ -11,23 +20,62 @@ const fetchFunc: typeof fetch = (() => {
     }
 })();
 
-export interface ClientOptions {
-    apiKey?: string;
-}
-
-interface StandardParams {
+export interface StandardParams {
     key?: string;
+    locale?: string;
 }
 
 export class TenorClient {
-    private apiKey?: string;
+    private standardParams: StandardParams;
 
-    public constructor(options: ClientOptions) {
-        this.apiKey = options.apiKey;
+    public constructor(standardParams: StandardParams = {}) {
+        this.standardParams = standardParams;
     }
 
     public fetchTrending(params: TrendingParams = {}): Promise<PagingResponse> {
         return this.makeRequest("trending", params);
+    }
+
+    public async fetchCategories(params: CategoriesParams = {}): Promise<CategoryObject[]> {
+        const res: CategoriesResponse = await this.makeRequest("categories", params);
+        return res.tags;
+    }
+
+    public async fetchSearchSuggestions(params: SearchSuggestionsParams): Promise<string[]> {
+        const res: StringListResponse = await this.makeRequest("search_suggestions", params);
+        return res.results;
+    }
+
+    public async fetchAutoComplete(params: AutoCompleteParams): Promise<string[]> {
+        const res: StringListResponse = await this.makeRequest("autocomplete", params);
+        return res.results;
+    }
+
+    public async fetchTrendingTerms(params: TrendingTermsParams): Promise<string[]> {
+        const res: StringListResponse = await this.makeRequest("trending_terms", params);
+        return res.results;
+    }
+
+    public async fetchRegisterShare(params: RegisterShareParams): Promise<void> {
+        // We don't need to worry about the return type because the only response we can get is
+        // a string of "ok" if the request worked.
+        await this.makeRequest("registershare", params);
+    }
+
+    public fetchGifs(ids: string[], params: GifsParams = {}): Promise<PagingResponse> {
+        return this.makeRequest("gifs", {
+            ids: ids.join(","),
+            ...params,
+        });
+    }
+
+    public fetchRandom(params: RandomParams): Promise<PagingResponse> {
+        return this.makeRequest("random", params);
+    }
+
+    public async fetchAnonId(): Promise<string> {
+        const res: { anon_id: string } = await this.makeRequest("random", {});
+        return res.anon_id;
     }
 
     // TODO: Make endpoint a string union.
@@ -48,11 +96,5 @@ export class TenorClient {
         } else {
             return data;
         }
-    }
-
-    private get standardParams(): StandardParams {
-        return {
-            key: this.apiKey,
-        };
     }
 }

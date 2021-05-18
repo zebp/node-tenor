@@ -1,6 +1,6 @@
 {
     "name": "node-tenor",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "author": "Zeb Piasecki <zeb@zebulon.dev>",
@@ -12,7 +12,8 @@
         "fmt": "prettier src/** -w",
         "start": "node dist/index.js",
         "prepare": "husky install",
-        "test": "jest"
+        "test": "jest",
+        "prepublish": "tsc"
     },
     "devDependencies": {
         "@babel/preset-env": "^7.14.2",

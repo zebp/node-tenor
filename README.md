@@ -1,2 +1,3 @@
-# node-typescript-template
-A template for node projects with TypeScript and yarn
+# node-tenor
+
+A **_WIP_** Node API for the tenor.com RESTful api.

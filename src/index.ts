@@ -51,7 +51,7 @@ export class TenorClient {
         return res.results;
     }
 
-    public async fetchTrendingTerms(params: TrendingTermsParams): Promise<string[]> {
+    public async fetchTrendingTerms(params: TrendingTermsParams = {}): Promise<string[]> {
         const res: StringListResponse = await this.makeRequest("trending_terms", params);
         return res.results;
     }
@@ -74,7 +74,7 @@ export class TenorClient {
     }
 
     public async fetchAnonId(): Promise<string> {
-        const res: { anon_id: string } = await this.makeRequest("random", {});
+        const res: { anon_id: string } = await this.makeRequest("anonid", {});
         return res.anon_id;
     }
 

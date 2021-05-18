@@ -1,30 +1,35 @@
 {
-  "name": "node-typescript-template",
-  "version": "1.0.0",
-  "main": "index.js",
-  "author": "Zeb Piasecki <zeb@zebulon.dev>",
-  "license": "MIT",
-  "scripts": {
-    "dev": "ts-node src/index.ts",
-    "build": "tsc",
-    "lint": "eslint src --ext .ts",
-    "fmt": "prettier src/** -w",
-    "start": "node dist/index.js",
-    "prepare": "husky install"
-  },
-  "devDependencies": {
-    "@types/node": "^14.14.37",
-    "@typescript-eslint/eslint-plugin": "^4.21.0",
-    "@typescript-eslint/parser": "^4.21.0",
-    "eslint": "^7.23.0",
-    "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-prettier": "^3.3.1",
-    "husky": "^6.0.0",
-    "prettier": "^2.2.1",
-    "ts-node": "^9.1.1",
-    "typescript": "^4.2.4"
-  },
-  "dependencies": {
-    "node-fetch": "^2.6.1"
-  }
+    "name": "node-typescript-template",
+    "version": "1.0.0",
+    "main": "index.js",
+    "author": "Zeb Piasecki <zeb@zebulon.dev>",
+    "license": "MIT",
+    "scripts": {
+        "dev": "ts-node src/index.ts",
+        "build": "tsc",
+        "lint": "eslint src --ext .ts",
+        "fmt": "prettier src/** -w",
+        "start": "node dist/index.js",
+        "prepare": "husky install",
+        "test": "jest"
+    },
+    "devDependencies": {
+        "@babel/preset-env": "^7.14.2",
+        "@babel/preset-typescript": "^7.13.0",
+        "@types/jest": "^26.0.23",
+        "@types/node": "^14.14.37",
+        "@typescript-eslint/eslint-plugin": "^4.21.0",
+        "@typescript-eslint/parser": "^4.21.0",
+        "eslint": "^7.23.0",
+        "eslint-config-prettier": "^8.1.0",
+        "eslint-plugin-prettier": "^3.3.1",
+        "husky": "^6.0.0",
+        "jest": "^26.6.3",
+        "prettier": "^2.2.1",
+        "ts-node": "^9.1.1",
+        "typescript": "^4.2.4"
+    },
+    "dependencies": {
+        "node-fetch": "^2.6.1"
+    }
 }

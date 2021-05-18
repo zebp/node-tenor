@@ -1,7 +1,15 @@
 import { TrendingParams } from "./params";
 import { PagingResponse, TenorError } from "./types";
 
-const fetchFunc: typeof fetch = fetch !== undefined ? fetch : require("node-fetch");
+// Hack to define a fetch function.
+const fetchFunc: typeof fetch = (() => {
+    try {
+        return fetch !== undefined ? fetch : require("node-fetch");
+    } catch (_) {
+        // We need a try catch here because jest is terrible.
+        return require("node-fetch");
+    }
+})();
 
 export interface ClientOptions {
     apiKey?: string;

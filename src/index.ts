@@ -4,6 +4,7 @@ import {
     GifsParams,
     RandomParams,
     RegisterShareParams,
+    SearchParams,
     SearchSuggestionsParams,
     TrendingParams,
     TrendingTermsParams,
@@ -26,6 +27,7 @@ export interface StandardParams {
 }
 
 type Endpoints =
+    | "search"
     | "trending"
     | "categories"
     | "search_suggestions"
@@ -41,6 +43,10 @@ export class TenorClient {
 
     public constructor(standardParams: StandardParams = {}) {
         this.standardParams = standardParams;
+    }
+
+    public fetchSearch(params: SearchParams): Promise<PagingResponse> {
+        return this.makeRequest("search", params);
     }
 
     public fetchTrending(params: TrendingParams = {}): Promise<PagingResponse> {

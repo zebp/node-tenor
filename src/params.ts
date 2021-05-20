@@ -50,6 +50,12 @@ export interface ParamsWithPaging {
     pos?: string;
 }
 
+export type SearchParams = ParamsWithAnonId &
+    ParamsWithLimit &
+    ParamsWithContentFilter &
+    ParamsWithPaging &
+    ParamsWithRequiredSearchString;
+
 export type TrendingParams = ParamsWithAnonId & ParamsWithLimit & ParamsWithContentFilter & ParamsWithPaging;
 
 export type SearchSuggestionsParams = ParamsWithAnonId & ParamsWithLimit & ParamsWithRequiredSearchString;

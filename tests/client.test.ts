@@ -2,6 +2,12 @@ import { TenorClient } from "../src/index";
 
 const client = new TenorClient({ key: process.env.TENOR_API_KEY });
 
+test("search gifs", async () => {
+    const res = await client.fetchSearch({ q: "excited", limit: 10 });
+    expect(res.results).toHaveLength(10);
+    expect(res.next).toBeDefined();
+});
+
 test("trending gifs", async () => {
     const res = await client.fetchTrending({ limit: 10 });
     expect(res.results).toHaveLength(10);

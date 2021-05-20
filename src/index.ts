@@ -101,6 +101,8 @@ export class TenorClient {
             ...params,
         };
         const queryString = Object.entries(queryParams)
+            // Ensure the value is truthy
+            .filter((pair) => pair[1])
             .map(([key, value]) => `${key}=${value}`)
             .join("&");
 
